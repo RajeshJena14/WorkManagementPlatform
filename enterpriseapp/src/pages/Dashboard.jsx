@@ -14,6 +14,7 @@ const Dashboard = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [systemUsers, setSystemUsers] = useState([]); // To populate dropdowns
     const [activities, setActivities] = useState([]); // 1. Added activities state
+    const [chartData, setChartData] = useState([]);
 
     // Modal State
     const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
@@ -38,6 +39,29 @@ const Dashboard = () => {
                 activeTasks: tasks.inProgress?.length || 0,
                 completedTasks: tasks.completed?.length || 0,
             });
+
+            const realChartData = Array.from({ length: 5 }).map((_, i) => {
+                const date = new Date();
+                date.setDate(date.getDate() - (4 - i)); // Go back 4 days... up to today
+
+                const dayName = date.toLocaleDateString('en-US', { weekday: 'short' });
+                const dateStringToMatch = date.toDateString(); // e.g., "Wed Apr 29 2026"
+
+                // Filter tasks that were completed exactly on this day
+                const tasksCompletedOnThisDay = completedList.filter(task => {
+                    if (!task.updatedAt) return false;
+                    const taskDate = new Date(task.updatedAt).toDateString();
+                    return taskDate === dateStringToMatch;
+                });
+
+                return {
+                    name: dayName,
+                    tasks: tasksCompletedOnThisDay.length // Exact count!
+                };
+            });
+
+            setChartData(realChartData);
+
         } catch (error) {
             toast.error('Failed to load primary dashboard statistics.');
         }
@@ -117,20 +141,6 @@ const Dashboard = () => {
         { title: 'Pending Tasks', value: dashboardData.pendingTasks, icon: Clock, color: 'bg-yellow-500' },
         { title: 'Completed Tasks', value: dashboardData.completedTasks, icon: CheckCircle, color: 'bg-emerald-500' },
     ];
-
-    // Dynamically generate the last 5 days for the chart
-    const chartData = Array.from({ length: 5 }).map((_, i) => {
-        const d = new Date();
-        d.setDate(d.getDate() - (4 - i)); // Go back 4 days, 3 days... up to today
-        const dayName = d.toLocaleDateString('en-US', { weekday: 'short' });
-
-        // For today (the last item), show the actual completed tasks. 
-        // (To make historical days accurate, you would need to filter tasks by their 'updatedAt' date).
-        return {
-            name: dayName,
-            tasks: i === 4 ? dashboardData.completedTasks : Math.floor(Math.random() * 3) // Placeholder for past days
-        };
-    });
 
     return (
         <section className="space-y-6">
