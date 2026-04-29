@@ -40,7 +40,7 @@ const Navbar = ({ onMenuClick }) => {
     useEffect(() => {
         let socket;
         if (user) {
-            socket = io('http://localhost:5000');
+            socket = io('https://workmanagementplatform-production.up.railway.app');
 
             // WAITS for the connection to establish before registering!
             socket.on('connect', () => {

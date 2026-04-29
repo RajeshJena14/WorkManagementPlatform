@@ -23,7 +23,7 @@ const UserManagement = () => {
         fetchUsers();
 
         // 2. Connect to WebSocket to listen for LIVE status changes
-        const socket = io('http://localhost:5000');
+        const socket = io('https://workmanagementplatform-production.up.railway.app');
 
         socket.on('user_status_change', (data) => {
             // Update the specific user's status and lastActivity in the React state instantly

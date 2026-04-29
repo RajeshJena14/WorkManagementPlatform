@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create a configured Axios instance
 const api = axios.create({
-    baseURL: 'http://localhost:5000/api', // Pointing to our Express backend
+    baseURL: 'https://workmanagementplatform-production.up.railway.app/api', // Pointing to our Express backend
     headers: {
         'Content-Type': 'application/json',
     },

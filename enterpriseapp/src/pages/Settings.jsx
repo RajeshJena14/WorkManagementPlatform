@@ -33,7 +33,7 @@ const Settings = () => {
         toast.success('Settings updated successfully!');
 
         // Connect briefly to trigger the self-notification
-        const socket = io('http://localhost:5000');
+        const socket = io('https://workmanagementplatform-production.up.railway.app');
         socket.emit('self_notification', {
             userId: user.id,
             title: 'Account Settings Updated',
