@@ -198,6 +198,12 @@ const updateTaskDetails = async (req, res) => {
         updates.updatedAt = new Date().toISOString();
         await taskRef.update(updates);
 
+        await db.collection('activities').add({
+            title: 'Task Updated',
+            description: `${req.user.name} updated the details of a task.`,
+            createdAt: new Date().toISOString()
+        });
+
         res.status(200).json({ message: 'Task updated successfully' });
     } catch (error) {
         console.error('Update Task Error:', error);

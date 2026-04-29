@@ -78,26 +78,39 @@ io.on('connection', (socket) => {
         }
     });
 
-    socket.on('self_notification', (data) => {
+    socket.on('self_notification', async (data) => {
         const uid = String(data.userId);
         console.log(`[Socket] Received self_notification for user: ${uid}`);
 
-        // Look up their primary socket from Navbar
-        const targetSocketId = connectedUsers.get(uid);
-        console.log(`[Socket] Target socket ID found: ${targetSocketId || 'None'}`);
-
-        if (targetSocketId) {
-            io.to(targetSocketId).emit('new_notification', {
-                id: Date.now(),
+        try {
+            // 1. THIS IS THE MISSING PIECE: Save it to Firestore permanently!
+            const notifRef = await db.collection('notifications').add({
+                userId: uid,
                 title: data.title,
                 message: data.message,
-                time: new Date().toISOString(),
-                read: false
+                read: false,
+                time: new Date().toISOString()
             });
-            console.log(`[Socket] Notification successfully sent to socket: ${targetSocketId}`);
-        } else {
-            console.log(`[Socket] User ${uid} is not currently in the connectedUsers map!`);
-            console.log(`[Socket] Current connected users:`, Array.from(connectedUsers.keys()));
+
+            // Look up their primary socket from Navbar
+            const targetSocketId = connectedUsers.get(uid);
+            console.log(`[Socket] Target socket ID found: ${targetSocketId || 'None'}`);
+
+            if (targetSocketId) {
+                // 2. Emit it live using the new database ID
+                io.to(targetSocketId).emit('new_notification', {
+                    id: notifRef.id,
+                    title: data.title,
+                    message: data.message,
+                    time: new Date().toISOString(),
+                    read: false
+                });
+                console.log(`[Socket] Notification successfully sent to socket: ${targetSocketId}`);
+            } else {
+                console.log(`[Socket] User ${uid} is not currently in the connectedUsers map!`);
+            }
+        } catch (error) {
+            console.error('[Socket] Error saving self notification to database:', error);
         }
     });
 });
