@@ -83,4 +83,52 @@ describe('Sidebar Component', () => {
         fireEvent.click(closeButton);
         expect(setIsOpen).toHaveBeenCalledWith(false);
     });
+
+    it('should render active class for active link', () => {
+        vi.mocked(reactRedux.useSelector).mockReturnValue({ role: 'Employee' });
+
+        render(
+            <MemoryRouter initialEntries={['/dashboard']}>
+                <Sidebar isOpen={true} setIsOpen={() => {}} />
+            </MemoryRouter>
+        );
+
+        const dashboardLink = screen.getByText('Dashboard').closest('a');
+        expect(dashboardLink).toHaveClass('bg-blue-600');
+        expect(dashboardLink).toHaveClass('text-white');
+
+        const projectsLink = screen.getByText('Project Center').closest('a');
+        expect(projectsLink).toHaveClass('hover:bg-slate-800');
+    });
+
+    it('should close sidebar when Admin clicks User Management', () => {
+        vi.mocked(reactRedux.useSelector).mockReturnValue({ role: 'Admin' });
+        const setIsOpen = vi.fn();
+
+        render(
+            <MemoryRouter>
+                <Sidebar isOpen={true} setIsOpen={setIsOpen} />
+            </MemoryRouter>
+        );
+
+        fireEvent.click(screen.getByText('User Management'));
+        expect(setIsOpen).toHaveBeenCalledWith(false);
+    });
+
+    it('should close sidebar when clicking Project Center and Project Board', () => {
+        vi.mocked(reactRedux.useSelector).mockReturnValue({ role: 'Employee' });
+        const setIsOpen = vi.fn();
+
+        render(
+            <MemoryRouter>
+                <Sidebar isOpen={true} setIsOpen={setIsOpen} />
+            </MemoryRouter>
+        );
+
+        fireEvent.click(screen.getByText('Project Center'));
+        expect(setIsOpen).toHaveBeenCalledWith(false);
+        
+        fireEvent.click(screen.getByText('Project Board'));
+        expect(setIsOpen).toHaveBeenCalledWith(false);
+    });
 });

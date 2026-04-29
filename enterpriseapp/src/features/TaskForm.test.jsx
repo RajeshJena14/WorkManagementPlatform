@@ -158,4 +158,39 @@ describe('TaskForm Component', () => {
         
         expect(screen.getByText('System User')).toBeInTheDocument();
     });
+
+    it('should test validation errors for type and priority', async () => {
+        render(<TaskForm onSubmit={vi.fn()} onCancel={vi.fn()} />);
+        
+        fireEvent.change(screen.getByLabelText(/Title/i), { target: { value: 'Valid Title' } });
+        fireEvent.change(screen.getByLabelText(/Description/i), { target: { value: 'Valid Desc' } });
+        
+        const selects = screen.getAllByRole('combobox');
+        fireEvent.change(selects[0], { target: { value: '' } });
+        fireEvent.change(selects[1], { target: { value: '' } });
+        
+        fireEvent.submit(screen.getByRole('button', { name: 'Save Task' }));
+        
+        await waitFor(() => {
+            expect(screen.getByText('type must be one of the following values: Bug, Feature, Improvement')).toBeInTheDocument();
+            expect(screen.getByText('priority must be one of the following values: Low, Medium, High')).toBeInTheDocument();
+        });
+    });
+
+    it('should handle undefined initialData fields', () => {
+        const initialData = { title: undefined, description: undefined, type: undefined, priority: undefined, dueDate: undefined };
+        render(<TaskForm onSubmit={vi.fn()} onCancel={vi.fn()} initialData={initialData} />);
+        
+        expect(screen.getByLabelText(/Title/i).value).toBe('');
+        expect(screen.getByLabelText(/Description/i).value).toBe('');
+    });
+
+    it('should ignore file upload if no file is selected', () => {
+        render(<TaskForm onSubmit={vi.fn()} onCancel={vi.fn()} />);
+        const fileInput = document.querySelector('input[type="file"]');
+        
+        fireEvent.change(fileInput, { target: { files: [] } });
+        
+        expect(screen.queryByText(/KB/)).not.toBeInTheDocument();
+    });
 });

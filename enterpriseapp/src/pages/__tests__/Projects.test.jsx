@@ -123,4 +123,27 @@ describe('Projects Component', () => {
         fireEvent.click(screen.getByText('Submit Mock'));
         await waitFor(() => expect(toast.error).toHaveBeenCalledWith('Error saving project.'));
     });
+
+    it('should close modal via Cancel Mock button', async () => {
+        render(<Projects />);
+        await waitFor(() => expect(screen.queryByText('Loading projects...')).not.toBeInTheDocument());
+
+        fireEvent.click(screen.getByText('+ New Project'));
+        expect(screen.getByText('Create Project')).toBeInTheDocument();
+
+        fireEvent.click(screen.getByText('Cancel Mock'));
+        await waitFor(() => expect(screen.queryByText('Create Project')).not.toBeInTheDocument());
+    });
+
+    it('should close modal via Modal onClose callback (Close button)', async () => {
+        render(<Projects />);
+        await waitFor(() => expect(screen.queryByText('Loading projects...')).not.toBeInTheDocument());
+
+        fireEvent.click(screen.getByText('+ New Project'));
+        expect(screen.getByText('Create Project')).toBeInTheDocument();
+
+        fireEvent.click(screen.getByRole('button', { name: 'Close modal' }));
+        
+        await waitFor(() => expect(screen.queryByText('Create Project')).not.toBeInTheDocument());
+    });
 });

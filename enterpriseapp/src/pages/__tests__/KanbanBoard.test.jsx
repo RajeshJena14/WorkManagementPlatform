@@ -12,7 +12,26 @@ vi.mock('react-toastify', () => ({ toast: { success: vi.fn(), error: vi.fn() } }
 
 // Mock DragDropContext
 vi.mock('@hello-pangea/dnd', () => ({
-    DragDropContext: ({ children }) => <div data-testid="dnd-context">{children}</div>,
+    DragDropContext: ({ children, onDragEnd }) => (
+        <div data-testid="dnd-context">
+            <button data-testid="mock-drag-success" onClick={() => onDragEnd({
+                source: { droppableId: 'pending', index: 0 },
+                destination: { droppableId: 'inProgress', index: 0 },
+                draggableId: '1'
+            })}>Drag Success</button>
+            <button data-testid="mock-drag-same" onClick={() => onDragEnd({
+                source: { droppableId: 'pending', index: 0 },
+                destination: { droppableId: 'pending', index: 0 },
+                draggableId: '1'
+            })}>Drag Same</button>
+            <button data-testid="mock-drag-no-dest" onClick={() => onDragEnd({
+                source: { droppableId: 'pending', index: 0 },
+                destination: null,
+                draggableId: '1'
+            })}>Drag No Dest</button>
+            {children}
+        </div>
+    ),
     Droppable: ({ children, droppableId }) => children({
         droppableProps: { 'data-droppable-id': droppableId }, innerRef: vi.fn()
     }, { isDraggingOver: false }),
@@ -164,5 +183,58 @@ describe('KanbanBoard Component', () => {
         fireEvent.click(screen.getByText('Submit Mock Form'));
 
         await waitFor(() => expect(toast.error).toHaveBeenCalledWith('Failed to save task.'));
+    });
+    it('should handle drag end successfully', async () => {
+        vi.mocked(api.patch).mockResolvedValue({});
+        render(<KanbanBoard />);
+        await waitFor(() => expect(screen.queryByText('Loading your board...')).not.toBeInTheDocument());
+
+        fireEvent.click(screen.getByTestId('mock-drag-success'));
+
+        await waitFor(() => {
+            expect(api.patch).toHaveBeenCalledWith('/tasks/1/status', { status: 'inProgress' });
+        });
+    });
+
+    it('should handle drag end API failure and revert state', async () => {
+        vi.mocked(api.patch).mockRejectedValue(new Error('API Error'));
+        render(<KanbanBoard />);
+        await waitFor(() => expect(screen.queryByText('Loading your board...')).not.toBeInTheDocument());
+
+        fireEvent.click(screen.getByTestId('mock-drag-success'));
+
+        await waitFor(() => {
+            expect(toast.error).toHaveBeenCalledWith('Access denied.'); // fallback error message in catch block
+        });
+    });
+
+    it('should ignore drag end if dropped outside (no destination)', async () => {
+        render(<KanbanBoard />);
+        await waitFor(() => expect(screen.queryByText('Loading your board...')).not.toBeInTheDocument());
+
+        fireEvent.click(screen.getByTestId('mock-drag-no-dest'));
+        expect(api.patch).not.toHaveBeenCalled();
+    });
+
+    it('should ignore drag end if dropped in same position', async () => {
+        render(<KanbanBoard />);
+        await waitFor(() => expect(screen.queryByText('Loading your board...')).not.toBeInTheDocument());
+
+        fireEvent.click(screen.getByTestId('mock-drag-same'));
+        expect(api.patch).not.toHaveBeenCalled();
+    });
+
+    it('should close modal via onClose prop (clicking overlay or close button)', async () => {
+        render(<KanbanBoard />);
+        await waitFor(() => expect(screen.queryByText('Loading your board...')).not.toBeInTheDocument());
+
+        fireEvent.click(screen.getByText('+ Add Task'));
+        expect(screen.getByText('Create New Task')).toBeInTheDocument();
+
+        fireEvent.click(screen.getByRole('button', { name: 'Close modal' }));
+
+        await waitFor(() => {
+            expect(screen.queryByText('Create New Task')).not.toBeInTheDocument();
+        });
     });
 });

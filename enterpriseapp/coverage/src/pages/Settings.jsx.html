@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">89.47% </span>
+                <span class="strong">90% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>17/19</span>
+                <span class='fraction'>18/20</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">64.28% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>9/14</span>
+                <span class='fraction'>14/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">60% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/4</span>
+                <span class='fraction'>3/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>17/17</span>
+                <span class='fraction'>18/18</span>
             </div>
         
             
@@ -205,21 +205,20 @@
 <a name='L140'></a><a href='#L140'>140</a>
 <a name='L141'></a><a href='#L141'>141</a>
 <a name='L142'></a><a href='#L142'>142</a>
-<a name='L143'></a><a href='#L143'>143</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L143'></a><a href='#L143'>143</a>
+<a name='L144'></a><a href='#L144'>144</a>
+<a name='L145'></a><a href='#L145'>145</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">13x</span>
-<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">17x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">13x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -227,7 +226,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -242,6 +244,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -252,11 +255,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">13x</span>
-<span class="cline-any cline-yes">13x</span>
-<span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -360,9 +364,9 @@ const Settings = () =&gt; {
     // We use react-hook-form to cleanly manage the profile and password states
     const { register, handleSubmit, formState: { errors } } = useForm({
         defaultValues: {
-            name: user?.name || <span class="branch-1 cbranch-no" title="branch not covered" >'',</span>
-            email: user?.email || <span class="branch-1 cbranch-no" title="branch not covered" >'',</span>
-            phone: user?.phone || <span class="branch-1 cbranch-no" title="branch not covered" >'',</span>
+            name: user?.name || '',
+            email: user?.email || '',
+            phone: user?.phone || '',
             currentPassword: '',
             newPassword: '',
             confirmPassword: '',
@@ -383,14 +387,16 @@ const Settings = () =&gt; {
 &nbsp;
         // Connect briefly to trigger the self-notification
         const socket = io('https://workmanagementplatform-production.up.railway.app');
-        socket.emit('self_notification', {
-            userId: user.id,
-            title: 'Account Settings Updated',
-            message: 'Your personal preferences and profile details have been securely saved.'
-        });
+        socket.on('connect', () =&gt; {
+            socket.emit('self_notification', {
+                userId: user.id,
+                title: 'Account Settings Updated',
+                message: 'Your personal preferences and profile details have been securely saved.'
+            });
 &nbsp;
-        // Clean up connection after sending
-<span class="fstat-no" title="function not covered" >        setTimeout(() =&gt; <span class="cstat-no" title="statement not covered" >s</span>ocket.disconnect(),</span> 1000);
+            // Hang up only after we are sure we connected and sent it
+<span class="fstat-no" title="function not covered" >            setTimeout(() =&gt; <span class="cstat-no" title="statement not covered" >s</span>ocket.disconnect(),</span> 1000);
+        });
     };
 &nbsp;
     // Reusable styles for the enterprise slate theme
@@ -459,12 +465,12 @@ const Settings = () =&gt; {
                         &lt;button
                             type="button"
                             onClick={toggleTheme}
-                            className={`${isDarkMode ? <span class="branch-0 cbranch-no" title="branch not covered" >'bg-blue-600' : '</span>bg-slate-300 dark:bg-slate-600'} relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800`}
+                            className={`${isDarkMode ? 'bg-blue-600' : 'bg-slate-300 dark:bg-slate-600'} relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800`}
                             role="switch"
                             aria-checked={isDarkMode}
                             aria-label="Toggle dark mode"
                         &gt;
-                            &lt;span className={`${isDarkMode ? <span class="branch-0 cbranch-no" title="branch not covered" >'translate-x-5' : '</span>translate-x-0'} pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out`}&gt;&lt;/span&gt;
+                            &lt;span className={`${isDarkMode ? 'translate-x-5' : 'translate-x-0'} pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out`}&gt;&lt;/span&gt;
                         &lt;/button&gt;
                     &lt;/div&gt;
                 &lt;/fieldset&gt;
@@ -496,7 +502,7 @@ export default Settings;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-04-29T06:00:57.683Z
+                at 2026-04-29T08:13:52.051Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

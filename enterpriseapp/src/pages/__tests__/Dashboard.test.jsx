@@ -18,6 +18,7 @@ vi.mock('recharts', () => ({
     YAxis: () => <div data-testid="y-axis" />,
     CartesianGrid: () => <div data-testid="cartesian-grid" />,
     Tooltip: () => <div data-testid="tooltip" />,
+    Legend: () => <div data-testid="legend" />,
 }));
 
 // Mock ProjectForm to isolate Dashboard logic
@@ -37,7 +38,7 @@ describe('Dashboard Component', () => {
 
         // Default API responses
         vi.mocked(api.get).mockImplementation((url) => {
-            if (url === '/projects') return Promise.resolve({ data: [{ id: 1 }, { id: 2 }] });
+            if (url === '/projects') return Promise.resolve({ data: [{ id: 1, title: 'Test Project Alpha' }, { id: 2, title: 'Test Project Beta' }] });
             if (url === '/tasks') return Promise.resolve({
                 data: { pending: [{ id: 1 }], inProgress: [{ id: 2 }, { id: 3 }], completed: [{ id: 4 }] }
             });
@@ -63,6 +64,26 @@ describe('Dashboard Component', () => {
         expect(screen.getAllByText('2').length).toBeGreaterThan(0);
         expect(screen.getByText('Pending Tasks')).toBeInTheDocument();
         expect(screen.getByText('Test Activity')).toBeInTheDocument();
+        
+        // Check if Project Progress chart renders
+        expect(screen.getByText('Project Progress')).toBeInTheDocument();
+        expect(screen.getAllByTestId('bar-chart').length).toBe(2);
+    });
+
+    it('should render empty state for Project Progress when no projects exist', async () => {
+        vi.mocked(api.get).mockImplementation((url) => {
+            if (url === '/projects') return Promise.resolve({ data: [] });
+            if (url === '/tasks') return Promise.resolve({ data: { pending: [], inProgress: [], completed: [] } });
+            if (url === '/users') return Promise.resolve({ data: [] });
+            if (url === '/system/activities') return Promise.resolve({ data: [] });
+            return Promise.resolve({ data: [] });
+        });
+
+        render(<Dashboard />);
+        await waitFor(() => expect(screen.queryByText('Loading analytics...')).not.toBeInTheDocument());
+
+        expect(screen.getByText('Project Progress')).toBeInTheDocument();
+        expect(screen.getByText('No project data available to display.')).toBeInTheDocument();
     });
 
     it('should render Create Project button for Manager', async () => {
@@ -150,5 +171,29 @@ describe('Dashboard Component', () => {
             expect(toast.error).toHaveBeenCalledWith('Failed to create project.');
             expect(screen.getByText('Create Workspace Project')).toBeInTheDocument(); // Modal stays open
         });
+    });
+
+    it('should handle chart calculation when task.updatedAt is missing', async () => {
+        vi.mocked(api.get).mockImplementation((url) => {
+            if (url === '/tasks') return Promise.resolve({
+                data: { pending: [], inProgress: [], completed: [{ id: 5, status: 'completed' }] } // missing updatedAt
+            });
+            return Promise.resolve({ data: [] });
+        });
+        render(<Dashboard />);
+        await waitFor(() => expect(screen.queryByText('Loading analytics...')).not.toBeInTheDocument());
+        expect(screen.getByText('Project Progress')).toBeInTheDocument();
+    });
+
+    it('should close Project Modal via onClose fallback (Close button)', async () => {
+        vi.mocked(reactRedux.useSelector).mockReturnValue({ user: { name: 'Manager User' }, role: 'Manager' });
+        render(<Dashboard />);
+        await waitFor(() => expect(screen.queryByText('Loading analytics...')).not.toBeInTheDocument());
+
+        fireEvent.click(screen.getByText('+ Create Project'));
+        expect(screen.getByText('Create Workspace Project')).toBeInTheDocument();
+
+        fireEvent.click(screen.getByRole('button', { name: 'Close modal' }));
+        await waitFor(() => expect(screen.queryByText('Create Workspace Project')).not.toBeInTheDocument());
     });
 });

@@ -9,10 +9,13 @@ vi.mock('react-redux', () => ({ useSelector: vi.fn(), useDispatch: vi.fn() }));
 vi.mock('react-toastify', () => ({ toast: { success: vi.fn(), error: vi.fn() } }));
 vi.mock('../../context/ThemeContext', () => ({ useTheme: vi.fn() }));
 
+const mockSocketOn = vi.fn((event, callback) => {
+    if (event === 'connect') callback();
+});
 const mockSocketEmit = vi.fn();
 const mockSocketDisconnect = vi.fn();
 vi.mock('socket.io-client', () => ({
-    io: () => ({ emit: mockSocketEmit, disconnect: mockSocketDisconnect })
+    io: () => ({ on: mockSocketOn, emit: mockSocketEmit, disconnect: mockSocketDisconnect })
 }));
 
 describe('Settings Component', () => {
@@ -74,5 +77,22 @@ describe('Settings Component', () => {
             expect(toast.success).toHaveBeenCalledWith('Settings updated successfully!');
             expect(mockSocketEmit).toHaveBeenCalled();
         });
+    });
+
+    it('should render empty form if user properties are null', () => {
+        vi.mocked(reactRedux.useSelector).mockReturnValue({
+            user: { id: 1, name: null, email: null, phone: null }
+        });
+        render(<Settings />);
+        expect(screen.getByLabelText(/Full Name/i)).toHaveValue('');
+        expect(screen.getByLabelText(/Email Address/i)).toHaveValue('');
+    });
+
+    it('should verify toggle dark mode aria-checked and class updates', () => {
+        vi.mocked(useTheme).mockReturnValue({ isDarkMode: true, toggleTheme: vi.fn() });
+        render(<Settings />);
+        const switchBtn = screen.getByRole('switch', { name: 'Toggle dark mode' });
+        expect(switchBtn).toHaveAttribute('aria-checked', 'true');
+        expect(switchBtn).toHaveClass('bg-blue-600');
     });
 });

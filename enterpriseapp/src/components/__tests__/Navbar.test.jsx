@@ -224,4 +224,88 @@ describe('Navbar Component', () => {
         expect(screen.getByText('No Role')).toBeInTheDocument();
         expect(screen.getByText('U')).toBeInTheDocument(); // Default initial
     });
+
+    it('should handle API get failure silently', async () => {
+        vi.mocked(api.get).mockRejectedValue(new Error('API Error'));
+        const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+        render(
+            <MemoryRouter>
+                <Navbar onMenuClick={() => { }} />
+            </MemoryRouter>
+        );
+
+        await waitFor(() => {
+            expect(consoleSpy).toHaveBeenCalledWith('Failed to load notifications');
+        });
+        consoleSpy.mockRestore();
+    });
+
+    it('should register user with socket upon connection', async () => {
+        const { io } = await import('socket.io-client');
+        const mockSocket = io();
+
+        render(
+            <MemoryRouter>
+                <Navbar onMenuClick={() => { }} />
+            </MemoryRouter>
+        );
+
+        // Find the 'connect' event listener and call it
+        const connectCall = mockSocket.on.mock.calls.find(call => call[0] === 'connect');
+        expect(connectCall).toBeDefined();
+        
+        // Trigger the connect callback
+        connectCall[1]();
+        
+        expect(mockSocket.emit).toHaveBeenCalledWith('register', '1');
+    });
+
+    it('should handle new_notification socket event', async () => {
+        const { io } = await import('socket.io-client');
+        const mockSocket = io();
+        const { toast } = await import('react-toastify');
+
+        render(
+            <MemoryRouter>
+                <Navbar onMenuClick={() => { }} />
+            </MemoryRouter>
+        );
+
+        // Find the 'new_notification' event listener and call it
+        const newNotifCall = mockSocket.on.mock.calls.find(call => call[0] === 'new_notification');
+        expect(newNotifCall).toBeDefined();
+        
+        // Trigger the callback with a mock notification
+        const mockNotif = { id: 2, title: 'Live Test', message: 'Live Message', read: false, time: new Date().toISOString() };
+        // React batching requires act here to avoid warnings
+        const { act } = await import('@testing-library/react');
+        act(() => {
+            newNotifCall[1](mockNotif);
+        });
+        
+        expect(toast.info).toHaveBeenCalledWith('Live Message', { position: 'bottom-right' });
+        
+        // Verify it updates the UI
+        const bellButton = screen.getAllByRole('button')[1];
+        fireEvent.click(bellButton);
+        expect(screen.getByText('Live Test')).toBeInTheDocument();
+        expect(screen.getByText('Live Message')).toBeInTheDocument();
+    });
+
+    it('should close dropdown when clicking Account Settings link', () => {
+        render(
+            <MemoryRouter>
+                <Navbar onMenuClick={() => { }} />
+            </MemoryRouter>
+        );
+
+        const profileButton = screen.getByText('JD').closest('button');
+        fireEvent.click(profileButton);
+
+        const accountSettingsLink = screen.getByText('Account Settings');
+        fireEvent.click(accountSettingsLink);
+
+        expect(screen.queryByText('Account Settings')).not.toBeInTheDocument();
+    });
 });

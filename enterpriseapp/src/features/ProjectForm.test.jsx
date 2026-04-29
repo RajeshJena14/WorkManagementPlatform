@@ -141,4 +141,32 @@ describe('ProjectForm Component', () => {
         expect(submittedData.tasks[0].title).toBe('Task 1 Title');
         expect(submittedData.tasks.length).toBe(1); // Second task is filtered out because it's empty
     });
+
+    it('should handle undefined fields in initialData', () => {
+        const initialData = { title: undefined, description: undefined, deadline: undefined };
+        render(<ProjectForm onSubmit={vi.fn()} onCancel={vi.fn()} initialData={initialData} />);
+        
+        expect(screen.getByPlaceholderText('e.g., Q4 Marketing Campaign').value).toBe('');
+    });
+
+    it('should map assigneeName to empty string if user not found', () => {
+        render(<ProjectForm onSubmit={vi.fn()} onCancel={vi.fn()} systemUsers={mockSystemUsers} />);
+
+        const selectDropdowns = screen.getAllByRole('combobox');
+        fireEvent.change(selectDropdowns[1], { target: { value: 'non-existent-user' } }); 
+
+        expect(selectDropdowns[1].value).toBe(''); // Invalid option reverts to empty/default
+    });
+
+    it('should submit empty tasks array in Edit Mode', () => {
+        const mockSubmit = vi.fn();
+        const initialData = { title: 'Old Proj', description: 'Old Desc', deadline: '2025-12-31T00:00:00Z' };
+        render(<ProjectForm onSubmit={mockSubmit} onCancel={vi.fn()} initialData={initialData} />);
+        
+        fireEvent.submit(screen.getByRole('button', { name: 'Update Project' }));
+        
+        expect(mockSubmit).toHaveBeenCalledTimes(1);
+        const submittedData = mockSubmit.mock.calls[0][0];
+        expect(submittedData.tasks).toEqual([]); // validTasks is [] in edit mode
+    });
 });
