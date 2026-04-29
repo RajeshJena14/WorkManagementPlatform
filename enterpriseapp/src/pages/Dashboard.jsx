@@ -48,7 +48,7 @@ const Dashboard = () => {
                 const dateStringToMatch = date.toDateString(); // e.g., "Wed Apr 29 2026"
 
                 // Filter tasks that were completed exactly on this day
-                const tasksCompletedOnThisDay = completedList.filter(task => {
+                const tasksCompletedOnThisDay = (tasks.completed || []).filter(task => {
                     if (!task.updatedAt) return false;
                     const taskDate = new Date(task.updatedAt).toDateString();
                     return taskDate === dateStringToMatch;
