@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1777436155414" clover="3.2.0">
+  <project timestamp="1777436155414" name="All files">
+    <metrics statements="450" coveredstatements="397" conditionals="307" coveredconditionals="256" methods="166" coveredmethods="142" elements="923" coveredelements="795" complexity="0" loc="450" ncloc="450" packages="6" files="16" classes="16"/>
+    <package name="src">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="App.jsx" path="C:\Users\DELL\OneDrive\Desktop\AssignmentProject\enterpriseapp\src\App.jsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="17" count="10" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components">
+      <metrics statements="80" coveredstatements="72" conditionals="56" coveredconditionals="49" methods="41" coveredmethods="34"/>
+      <file name="Layout.jsx" path="C:\Users\DELL\OneDrive\Desktop\AssignmentProject\enterpriseapp\src\components\Layout.jsx">
+        <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="7" count="11" type="stmt"/>
+        <line num="9" count="11" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="26" count="3" type="stmt"/>
+      </file>
+      <file name="Modal.jsx" path="C:\Users\DELL\OneDrive\Desktop\AssignmentProject\enterpriseapp\src\components\Modal.jsx">
+        <metrics statements="8" coveredstatements="8" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="5" count="57" type="stmt"/>
+        <line num="6" count="55" type="cond" truecount="2" falsecount="0"/>
+        <line num="7" count="16" type="stmt"/>
+        <line num="9" count="39" type="stmt"/>
+        <line num="11" count="55" type="stmt"/>
+        <line num="14" count="57" type="cond" truecount="2" falsecount="0"/>
+        <line num="16" count="16" type="stmt"/>
+      </file>
+      <file name="Navbar.jsx" path="C:\Users\DELL\OneDrive\Desktop\AssignmentProject\enterpriseapp\src\components\Navbar.jsx">
+        <metrics statements="48" coveredstatements="43" conditionals="32" coveredconditionals="28" methods="22" coveredmethods="18"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="12" count="23" type="stmt"/>
+        <line num="13" count="23" type="stmt"/>
+        <line num="16" count="23" type="stmt"/>
+        <line num="17" count="23" type="stmt"/>
+        <line num="18" count="23" type="stmt"/>
+        <line num="20" count="23" type="stmt"/>
+        <line num="21" count="23" type="stmt"/>
+        <line num="22" count="23" type="stmt"/>
+        <line num="24" count="23" type="stmt"/>
+        <line num="27" count="23" type="stmt"/>
+        <line num="28" count="10" type="stmt"/>
+        <line num="29" count="9" type="stmt"/>
+        <line num="30" count="9" type="stmt"/>
+        <line num="31" count="9" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="36" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="40" count="23" type="stmt"/>
+        <line num="42" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="43" count="9" type="stmt"/>
+        <line num="46" count="9" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="50" count="9" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="55" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="59" count="23" type="stmt"/>
+        <line num="60" count="10" type="stmt"/>
+        <line num="61" count="1" type="cond" truecount="3" falsecount="1"/>
+        <line num="62" count="1" type="stmt"/>
+        <line num="64" count="1" type="cond" truecount="3" falsecount="1"/>
+        <line num="65" count="1" type="stmt"/>
+        <line num="68" count="10" type="stmt"/>
+        <line num="69" count="10" type="stmt"/>
+        <line num="72" count="23" type="stmt"/>
+        <line num="73" count="1" type="stmt"/>
+        <line num="74" count="1" type="stmt"/>
+        <line num="78" count="23" type="stmt"/>
+        <line num="79" count="2" type="stmt"/>
+        <line num="80" count="2" type="stmt"/>
+        <line num="81" count="1" type="stmt"/>
+        <line num="83" count="1" type="stmt"/>
+        <line num="87" count="44" type="cond" truecount="2" falsecount="0"/>
+        <line num="89" count="23" type="stmt"/>
+        <line num="108" count="4" type="stmt"/>
+        <line num="134" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="151" count="4" type="stmt"/>
+        <line num="171" count="0" type="stmt"/>
+      </file>
+      <file name="ProtectedRoute.jsx" path="C:\Users\DELL\OneDrive\Desktop\AssignmentProject\enterpriseapp\src\components\ProtectedRoute.jsx">
+        <metrics statements="7" coveredstatements="7" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="5" count="15" type="stmt"/>
+        <line num="7" count="15" type="cond" truecount="2" falsecount="0"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="11" count="12" type="cond" truecount="4" falsecount="0"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="17" count="9" type="stmt"/>
+      </file>
+      <file name="Sidebar.jsx" path="C:\Users\DELL\OneDrive\Desktop\AssignmentProject\enterpriseapp\src\components\Sidebar.jsx">
+        <metrics statements="12" coveredstatements="9" conditionals="12" coveredconditionals="9" methods="11" coveredmethods="8"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="6" count="7" type="stmt"/>
+        <line num="8" count="7" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="27" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="8" type="cond" truecount="1" falsecount="1"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="45" count="8" type="cond" truecount="1" falsecount="1"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="55" count="1" type="cond" truecount="1" falsecount="1"/>
+      </file>
+    </package>
+    <package name="src.context">
+      <metrics statements="17" coveredstatements="17" conditionals="4" coveredconditionals="4" methods="6" coveredmethods="6"/>
+      <file name="ThemeContext.jsx" path="C:\Users\DELL\OneDrive\Desktop\AssignmentProject\enterpriseapp\src\context\ThemeContext.jsx">
+        <metrics statements="17" coveredstatements="17" conditionals="4" coveredconditionals="4" methods="6" coveredmethods="6"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="7" count="8" type="stmt"/>
+        <line num="8" count="6" type="stmt"/>
+        <line num="9" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="10" count="3" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="16" count="8" type="stmt"/>
+        <line num="17" count="8" type="stmt"/>
+        <line num="18" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="19" count="3" type="stmt"/>
+        <line num="20" count="3" type="stmt"/>
+        <line num="22" count="5" type="stmt"/>
+        <line num="23" count="5" type="stmt"/>
+        <line num="27" count="8" type="stmt"/>
+        <line num="29" count="8" type="stmt"/>
+        <line num="37" count="8" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.features">
+      <metrics statements="67" coveredstatements="67" conditionals="69" coveredconditionals="59" methods="32" coveredmethods="31"/>
+      <file name="ProjectForm.jsx" path="C:\Users\DELL\OneDrive\Desktop\AssignmentProject\enterpriseapp\src\features\ProjectForm.jsx">
+        <metrics statements="33" coveredstatements="33" conditionals="28" coveredconditionals="23" methods="19" coveredmethods="19"/>
+        <line num="5" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="6" count="26" type="stmt"/>
+        <line num="7" count="26" type="stmt"/>
+        <line num="10" count="26" type="stmt"/>
+        <line num="11" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="20" count="26" type="stmt"/>
+        <line num="21" count="26" type="stmt"/>
+        <line num="23" count="26" type="stmt"/>
+        <line num="24" count="7" type="stmt"/>
+        <line num="25" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="26" count="7" type="stmt"/>
+        <line num="27" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="28" count="4" type="stmt"/>
+        <line num="29" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="31" count="7" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="37" count="26" type="stmt"/>
+        <line num="38" count="4" type="stmt"/>
+        <line num="39" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="42" count="5" type="cond" truecount="1" falsecount="1"/>
+        <line num="44" count="4" type="stmt"/>
+        <line num="52" count="26" type="stmt"/>
+        <line num="54" count="26" type="stmt"/>
+        <line num="58" count="3" type="stmt"/>
+        <line num="63" count="1" type="stmt"/>
+        <line num="69" count="1" type="stmt"/>
+        <line num="77" count="29" type="stmt"/>
+        <line num="79" count="1" type="stmt"/>
+        <line num="84" count="3" type="stmt"/>
+        <line num="87" count="1" type="stmt"/>
+        <line num="93" count="3" type="stmt"/>
+        <line num="96" count="24" type="stmt"/>
+      </file>
+      <file name="TaskForm.jsx" path="C:\Users\DELL\OneDrive\Desktop\AssignmentProject\enterpriseapp\src\features\TaskForm.jsx">
+        <metrics statements="34" coveredstatements="34" conditionals="41" coveredconditionals="36" methods="13" coveredmethods="12"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="17" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="19" count="29" type="stmt"/>
+        <line num="22" count="29" type="stmt"/>
+        <line num="23" count="29" type="stmt"/>
+        <line num="24" count="29" type="stmt"/>
+        <line num="26" count="29" type="stmt"/>
+        <line num="36" count="29" type="stmt"/>
+        <line num="37" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="38" count="4" type="stmt"/>
+        <line num="46" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="47" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="52" count="29" type="stmt"/>
+        <line num="53" count="1" type="stmt"/>
+        <line num="54" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="55" count="1" type="stmt"/>
+        <line num="56" count="1" type="stmt"/>
+        <line num="60" count="29" type="stmt"/>
+        <line num="61" count="1" type="stmt"/>
+        <line num="65" count="29" type="stmt"/>
+        <line num="66" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="67" count="4" type="stmt"/>
+        <line num="73" count="5" type="stmt"/>
+        <line num="74" count="5" type="stmt"/>
+        <line num="78" count="29" type="stmt"/>
+        <line num="80" count="1" type="stmt"/>
+        <line num="83" count="29" type="stmt"/>
+        <line num="84" count="29" type="stmt"/>
+        <line num="86" count="29" type="stmt"/>
+        <line num="162" count="2" type="stmt"/>
+        <line num="164" count="1" type="stmt"/>
+        <line num="183" count="10" type="stmt"/>
+        <line num="198" count="5" type="stmt"/>
+        <line num="199" count="3" type="cond" truecount="2" falsecount="0"/>
+      </file>
+    </package>
+    <package name="src.pages">
+      <metrics statements="238" coveredstatements="220" conditionals="168" coveredconditionals="138" methods="74" coveredmethods="65"/>
+      <file name="Dashboard.jsx" path="C:\Users\DELL\OneDrive\Desktop\AssignmentProject\enterpriseapp\src\pages\Dashboard.jsx">
+        <metrics statements="45" coveredstatements="44" conditionals="22" coveredconditionals="20" methods="11" coveredmethods="10"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="11" count="26" type="stmt"/>
+        <line num="13" count="26" type="stmt"/>
+        <line num="14" count="26" type="stmt"/>
+        <line num="15" count="26" type="stmt"/>
+        <line num="16" count="26" type="stmt"/>
+        <line num="19" count="26" type="stmt"/>
+        <line num="20" count="26" type="stmt"/>
+        <line num="21" count="26" type="stmt"/>
+        <line num="23" count="26" type="stmt"/>
+        <line num="24" count="12" type="stmt"/>
+        <line num="26" count="12" type="stmt"/>
+        <line num="27" count="12" type="stmt"/>
+        <line num="32" count="11" type="stmt"/>
+        <line num="35" count="11" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
+        <line num="45" count="12" type="cond" truecount="4" falsecount="0"/>
+        <line num="46" count="11" type="stmt"/>
+        <line num="47" count="11" type="stmt"/>
+        <line num="50" count="10" type="stmt"/>
+        <line num="52" count="10" type="stmt"/>
+        <line num="54" count="1" type="stmt"/>
+        <line num="59" count="12" type="stmt"/>
+        <line num="60" count="12" type="stmt"/>
+        <line num="61" count="11" type="stmt"/>
+        <line num="63" count="1" type="stmt"/>
+        <line num="66" count="12" type="stmt"/>
+        <line num="69" count="26" type="stmt"/>
+        <line num="97" count="26" type="stmt"/>
+        <line num="99" count="3" type="stmt"/>
+        <line num="100" count="3" type="stmt"/>
+        <line num="102" count="2" type="stmt"/>
+        <line num="103" count="2" type="stmt"/>
+        <line num="104" count="2" type="stmt"/>
+        <line num="106" count="1" type="cond" truecount="2" falsecount="0"/>
+        <line num="112" count="26" type="cond" truecount="2" falsecount="0"/>
+        <line num="114" count="16" type="stmt"/>
+        <line num="122" count="16" type="stmt"/>
+        <line num="124" count="16" type="stmt"/>
+        <line num="134" count="4" type="stmt"/>
+        <line num="145" count="64" type="stmt"/>
+        <line num="146" count="64" type="stmt"/>
+        <line num="187" count="12" type="stmt"/>
+        <line num="203" count="0" type="stmt"/>
+        <line num="209" count="1" type="stmt"/>
+      </file>
+      <file name="KanbanBoard.jsx" path="C:\Users\DELL\OneDrive\Desktop\AssignmentProject\enterpriseapp\src\pages\KanbanBoard.jsx">
+        <metrics statements="73" coveredstatements="58" conditionals="46" coveredconditionals="31" methods="24" coveredmethods="21"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="11" count="30" type="stmt"/>
+        <line num="13" count="30" type="stmt"/>
+        <line num="14" count="30" type="stmt"/>
+        <line num="15" count="30" type="stmt"/>
+        <line num="18" count="30" type="stmt"/>
+        <line num="20" count="30" type="stmt"/>
+        <line num="21" count="12" type="stmt"/>
+        <line num="22" count="12" type="stmt"/>
+        <line num="23" count="12" type="stmt"/>
+        <line num="24" count="11" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="28" count="12" type="stmt"/>
+        <line num="32" count="30" type="stmt"/>
+        <line num="35" count="30" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="38" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="54" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="60" count="30" type="stmt"/>
+        <line num="61" count="3" type="stmt"/>
+        <line num="62" count="3" type="stmt"/>
+        <line num="65" count="30" type="stmt"/>
+        <line num="66" count="2" type="stmt"/>
+        <line num="67" count="2" type="stmt"/>
+        <line num="70" count="30" type="stmt"/>
+        <line num="71" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="73" count="2" type="stmt"/>
+        <line num="74" count="2" type="stmt"/>
+        <line num="75" count="1" type="stmt"/>
+        <line num="77" count="1" type="stmt"/>
+        <line num="79" count="1" type="stmt"/>
+        <line num="81" count="1" type="cond" truecount="2" falsecount="0"/>
+        <line num="85" count="30" type="stmt"/>
+        <line num="86" count="3" type="stmt"/>
+        <line num="87" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="89" count="1" type="stmt"/>
+        <line num="90" count="1" type="stmt"/>
+        <line num="91" count="1" type="stmt"/>
+        <line num="94" count="2" type="stmt"/>
+        <line num="95" count="1" type="stmt"/>
+        <line num="96" count="1" type="stmt"/>
+        <line num="98" count="2" type="stmt"/>
+        <line num="100" count="1" type="cond" truecount="2" falsecount="0"/>
+        <line num="106" count="30" type="stmt"/>
+        <line num="107" count="54" type="cond" truecount="2" falsecount="0"/>
+        <line num="108" count="36" type="cond" truecount="2" falsecount="0"/>
+        <line num="109" count="18" type="stmt"/>
+        <line num="112" count="30" type="stmt"/>
+        <line num="113" count="53" type="cond" truecount="2" falsecount="0"/>
+        <line num="114" count="36" type="cond" truecount="2" falsecount="0"/>
+        <line num="115" count="18" type="stmt"/>
+        <line num="118" count="88" type="cond" truecount="2" falsecount="0"/>
+        <line num="120" count="30" type="cond" truecount="2" falsecount="0"/>
+        <line num="122" count="19" type="stmt"/>
+        <line num="137" count="57" type="stmt"/>
+        <line num="144" count="57" type="cond" truecount="1" falsecount="1"/>
+        <line num="147" count="54" type="stmt"/>
+        <line num="149" count="54" type="stmt"/>
+        <line num="157" count="2" type="stmt"/>
+        <line num="160" count="3" type="stmt"/>
+        <line num="219" count="0" type="stmt"/>
+        <line num="227" count="1" type="stmt"/>
+      </file>
+      <file name="Login.jsx" path="C:\Users\DELL\OneDrive\Desktop\AssignmentProject\enterpriseapp\src\pages\Login.jsx">
+        <metrics statements="24" coveredstatements="24" conditionals="43" coveredconditionals="37" methods="7" coveredmethods="7"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="18" count="2" type="stmt"/>
+        <line num="32" count="2" type="stmt"/>
+        <line num="33" count="23" type="stmt"/>
+        <line num="34" count="23" type="stmt"/>
+        <line num="35" count="23" type="stmt"/>
+        <line num="37" count="23" type="stmt"/>
+        <line num="39" count="23" type="stmt"/>
+        <line num="40" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="41" count="2" type="stmt"/>
+        <line num="45" count="23" type="stmt"/>
+        <line num="46" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="47" count="1" type="stmt"/>
+        <line num="48" count="1" type="stmt"/>
+        <line num="53" count="23" type="stmt"/>
+        <line num="60" count="23" type="stmt"/>
+        <line num="61" count="2" type="stmt"/>
+        <line num="62" count="2" type="stmt"/>
+        <line num="63" count="2" type="stmt"/>
+        <line num="66" count="23" type="stmt"/>
+        <line num="67" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="69" count="2" type="stmt"/>
+        <line num="72" count="1" type="stmt"/>
+        <line num="83" count="23" type="stmt"/>
+      </file>
+      <file name="Projects.jsx" path="C:\Users\DELL\OneDrive\Desktop\AssignmentProject\enterpriseapp\src\pages\Projects.jsx">
+        <metrics statements="47" coveredstatements="45" conditionals="23" coveredconditionals="22" methods="15" coveredmethods="12"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="10" count="26" type="stmt"/>
+        <line num="11" count="26" type="stmt"/>
+        <line num="12" count="26" type="stmt"/>
+        <line num="13" count="26" type="stmt"/>
+        <line num="14" count="26" type="stmt"/>
+        <line num="15" count="26" type="stmt"/>
+        <line num="17" count="26" type="stmt"/>
+        <line num="18" count="12" type="stmt"/>
+        <line num="19" count="12" type="stmt"/>
+        <line num="20" count="12" type="stmt"/>
+        <line num="21" count="11" type="stmt"/>
+        <line num="24" count="11" type="cond" truecount="4" falsecount="0"/>
+        <line num="25" count="10" type="stmt"/>
+        <line num="26" count="10" type="stmt"/>
+        <line num="27" count="10" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="32" count="12" type="stmt"/>
+        <line num="36" count="26" type="stmt"/>
+        <line num="38" count="26" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
+        <line num="43" count="26" type="stmt"/>
+        <line num="44" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="45" count="2" type="stmt"/>
+        <line num="46" count="2" type="stmt"/>
+        <line num="47" count="1" type="stmt"/>
+        <line num="48" count="1" type="stmt"/>
+        <line num="50" count="1" type="stmt"/>
+        <line num="54" count="26" type="stmt"/>
+        <line num="55" count="3" type="stmt"/>
+        <line num="56" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="57" count="1" type="stmt"/>
+        <line num="58" count="1" type="stmt"/>
+        <line num="60" count="2" type="stmt"/>
+        <line num="61" count="1" type="stmt"/>
+        <line num="63" count="2" type="stmt"/>
+        <line num="64" count="2" type="stmt"/>
+        <line num="66" count="1" type="stmt"/>
+        <line num="70" count="26" type="cond" truecount="2" falsecount="0"/>
+        <line num="72" count="16" type="stmt"/>
+        <line num="78" count="2" type="stmt"/>
+        <line num="88" count="13" type="stmt"/>
+        <line num="93" count="1" type="stmt"/>
+        <line num="96" count="3" type="stmt"/>
+        <line num="125" count="0" type="stmt"/>
+        <line num="132" count="0" type="stmt"/>
+      </file>
+      <file name="Settings.jsx" path="C:\Users\DELL\OneDrive\Desktop\AssignmentProject\enterpriseapp\src\pages\Settings.jsx">
+        <metrics statements="17" coveredstatements="17" conditionals="14" coveredconditionals="9" methods="4" coveredmethods="2"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="8" count="13" type="stmt"/>
+        <line num="9" count="13" type="stmt"/>
+        <line num="12" count="13" type="stmt"/>
+        <line num="23" count="13" type="stmt"/>
+        <line num="27" count="3" type="cond" truecount="4" falsecount="0"/>
+        <line num="28" count="1" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="32" count="2" type="stmt"/>
+        <line num="33" count="2" type="stmt"/>
+        <line num="36" count="2" type="stmt"/>
+        <line num="37" count="2" type="stmt"/>
+        <line num="44" count="2" type="stmt"/>
+        <line num="48" count="13" type="stmt"/>
+        <line num="49" count="13" type="stmt"/>
+        <line num="50" count="13" type="stmt"/>
+        <line num="52" count="13" type="stmt"/>
+      </file>
+      <file name="UserManagement.jsx" path="C:\Users\DELL\OneDrive\Desktop\AssignmentProject\enterpriseapp\src\pages\UserManagement.jsx">
+        <metrics statements="32" coveredstatements="32" conditionals="20" coveredconditionals="19" methods="13" coveredmethods="13"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="7" count="14" type="stmt"/>
+        <line num="8" count="14" type="stmt"/>
+        <line num="10" count="14" type="stmt"/>
+        <line num="12" count="6" type="stmt"/>
+        <line num="13" count="6" type="stmt"/>
+        <line num="14" count="6" type="stmt"/>
+        <line num="15" count="5" type="stmt"/>
+        <line num="17" count="1" type="cond" truecount="2" falsecount="0"/>
+        <line num="19" count="6" type="stmt"/>
+        <line num="23" count="6" type="stmt"/>
+        <line num="26" count="6" type="stmt"/>
+        <line num="28" count="6" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="31" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="38" count="6" type="stmt"/>
+        <line num="41" count="14" type="stmt"/>
+        <line num="42" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="43" count="2" type="stmt"/>
+        <line num="44" count="2" type="stmt"/>
+        <line num="45" count="3" type="stmt"/>
+        <line num="46" count="1" type="stmt"/>
+        <line num="48" count="1" type="cond" truecount="2" falsecount="0"/>
+        <line num="53" count="14" type="stmt"/>
+        <line num="54" count="20" type="cond" truecount="2" falsecount="0"/>
+        <line num="55" count="12" type="cond" truecount="2" falsecount="0"/>
+        <line num="57" count="5" type="stmt"/>
+        <line num="58" count="5" type="stmt"/>
+        <line num="63" count="14" type="cond" truecount="2" falsecount="0"/>
+        <line num="65" count="8" type="stmt"/>
+        <line num="85" count="20" type="stmt"/>
+        <line num="115" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.store.slices">
+      <metrics statements="46" coveredstatements="19" conditionals="10" coveredconditionals="6" methods="11" coveredmethods="4"/>
+      <file name="authSlice.js" path="C:\Users\DELL\OneDrive\Desktop\AssignmentProject\enterpriseapp\src\store\slices\authSlice.js">
+        <metrics statements="46" coveredstatements="19" conditionals="10" coveredconditionals="6" methods="11" coveredmethods="4"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="13" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="18" count="2" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="26" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="31" count="2" type="stmt"/>
+        <line num="43" count="2" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="62" count="1" type="stmt"/>
+        <line num="65" count="1" type="stmt"/>
+        <line num="66" count="1" type="stmt"/>
+        <line num="69" count="1" type="stmt"/>
+        <line num="70" count="1" type="stmt"/>
+        <line num="71" count="1" type="stmt"/>
+        <line num="72" count="1" type="stmt"/>
+        <line num="73" count="1" type="stmt"/>
+        <line num="75" count="1" type="stmt"/>
+        <line num="76" count="1" type="stmt"/>
+        <line num="79" count="0" type="stmt"/>
+        <line num="80" count="0" type="stmt"/>
+        <line num="84" count="0" type="stmt"/>
+        <line num="85" count="0" type="stmt"/>
+        <line num="88" count="0" type="stmt"/>
+        <line num="89" count="0" type="stmt"/>
+        <line num="90" count="0" type="stmt"/>
+        <line num="91" count="0" type="stmt"/>
+        <line num="92" count="0" type="stmt"/>
+        <line num="93" count="0" type="stmt"/>
+        <line num="94" count="0" type="stmt"/>
+        <line num="97" count="0" type="stmt"/>
+        <line num="98" count="0" type="stmt"/>
+        <line num="103" count="2" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
