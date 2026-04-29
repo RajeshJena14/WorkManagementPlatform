@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 import { Briefcase, CheckCircle, Clock, LayoutDashboard, Plus, Trash2 } from 'lucide-react';
 import { toast } from 'react-toastify';
 import api from '../services/api';
@@ -15,6 +15,7 @@ const Dashboard = () => {
     const [systemUsers, setSystemUsers] = useState([]); // To populate dropdowns
     const [activities, setActivities] = useState([]); // 1. Added activities state
     const [chartData, setChartData] = useState([]);
+    const [projectProgressData, setProjectProgressData] = useState([]);
 
     // Modal State
     const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
@@ -61,6 +62,28 @@ const Dashboard = () => {
             });
 
             setChartData(realChartData);
+
+            const projects = Array.isArray(projectsRes.data) ? projectsRes.data : [];
+            const allTasks = [
+                ...(tasks.pending || []),
+                ...(tasks.inProgress || []),
+                ...(tasks.completed || [])
+            ];
+
+            const progressData = projects.map(project => {
+                const projectTasks = allTasks.filter(task => task.projectId === project.id);
+                // Ensure we match the exact string your backend uses for completed tasks
+                const completedTasks = projectTasks.filter(task => task.status === 'completed' || task.status === 'Completed');
+
+                return {
+                    name: project.title.length > 15 ? project.title.substring(0, 15) + '...' : project.title,
+                    Tasks: projectTasks.length,
+                    Completed: completedTasks.length
+                };
+            });
+
+            // Show top 5 projects
+            setProjectProgressData(progressData.slice(0, 5));
 
         } catch (error) {
             toast.error('Failed to load primary dashboard statistics.');
@@ -215,6 +238,38 @@ const Dashboard = () => {
                                     </li>
                                 ))}
                             </ul>
+                        )}
+                    </div>
+                </section>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+
+                {/* Project Progress Grouped Bar Chart */}
+                <section className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700">
+                    <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-4">Project Progress</h3>
+                    <div className="h-72">
+                        {projectProgressData.length === 0 ? (
+                            <div className="flex h-full items-center justify-center text-slate-400 dark:text-slate-500 text-sm italic bg-slate-50 dark:bg-slate-900/50 rounded-md border border-dashed border-slate-200 dark:border-slate-700 p-4">
+                                No project data available to display.
+                            </div>
+                        ) : (
+                            <ResponsiveContainer width="100%" height="100%">
+                                <BarChart data={projectProgressData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#CBD5E1" opacity={0.2} />
+                                    <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fill: '#64748B', fontSize: 12 }} />
+                                    <YAxis axisLine={false} tickLine={false} tick={{ fill: '#64748B', fontSize: 12 }} allowDecimals={false} />
+                                    <Tooltip
+                                        cursor={{ fill: '#F1F5F9', opacity: 0.1 }}
+                                        contentStyle={{ borderRadius: '8px', border: 'none', backgroundColor: '#1E293B', color: '#F8FAFC' }}
+                                    />
+                                    <Legend wrapperStyle={{ paddingTop: '10px' }} />
+
+                                    {/* Using Indigo and Emerald colors to match your screenshot */}
+                                    <Bar dataKey="Tasks" fill="#818CF8" name="Tasks" radius={[4, 4, 0, 0]} />
+                                    <Bar dataKey="Completed" fill="#34D399" name="Completed" radius={[4, 4, 0, 0]} />
+                                </BarChart>
+                            </ResponsiveContainer>
                         )}
                     </div>
                 </section>
