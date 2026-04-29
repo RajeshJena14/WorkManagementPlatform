@@ -34,14 +34,16 @@ const Settings = () => {
 
         // Connect briefly to trigger the self-notification
         const socket = io('https://workmanagementplatform-production.up.railway.app');
-        socket.emit('self_notification', {
-            userId: user.id,
-            title: 'Account Settings Updated',
-            message: 'Your personal preferences and profile details have been securely saved.'
-        });
+        socket.on('connect', () => {
+            socket.emit('self_notification', {
+                userId: user.id,
+                title: 'Account Settings Updated',
+                message: 'Your personal preferences and profile details have been securely saved.'
+            });
 
-        // Clean up connection after sending
-        setTimeout(() => socket.disconnect(), 1000);
+            // Hang up only after we are sure we connected and sent it
+            setTimeout(() => socket.disconnect(), 1000);
+        });
     };
 
     // Reusable styles for the enterprise slate theme

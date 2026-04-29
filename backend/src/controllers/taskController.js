@@ -137,6 +137,13 @@ const updateTaskStatus = async (req, res) => {
             updatedAt: new Date().toISOString()
         });
 
+        const friendlyStatus = status.replace(/([A-Z])/g, ' $1').trim().toLowerCase();
+        await db.collection('activities').add({
+            title: 'Task Status Updated',
+            description: `${req.user.name} moved "${taskData.title}" to ${friendlyStatus}.`,
+            createdAt: new Date().toISOString()
+        });
+
         // --- NOTIFICATION LOGIC ---
         const io = req.app.get('io');
         const connectedUsers = req.app.get('connectedUsers');
