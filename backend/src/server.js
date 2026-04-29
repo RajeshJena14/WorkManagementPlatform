@@ -9,10 +9,17 @@ const app = express();
 
 // Create an HTTP server and attach Express and Socket.io to it
 const server = http.createServer(app);
+
+const allowedOrigins = [
+    'http://localhost:5173', // Keep local for testing
+    'https://worksyncplatform.netlify.app' // Add your live Netlify URL!
+];
+
 const io = new Server(server, {
     cors: {
-        origin: 'http://localhost:5173', // Allow your React frontend
-        methods: ['GET', 'POST', 'PATCH', 'DELETE']
+        origin: allowedOrigins, // Allow your React frontend
+        methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+        credentials: true
     }
 });
 
@@ -100,7 +107,7 @@ app.set('io', io);
 app.set('connectedUsers', connectedUsers);
 
 // Middleware
-app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
+app.use(cors({ origin: allowedOrigins, credentials: true }));
 app.use(express.json()); // Parse incoming JSON payloads
 
 // Basic Health Check Route
